@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django import forms
 
+
 # Tasks
 
 class Department(models.Model):
@@ -68,14 +69,14 @@ class Task(models.Model):
     task_desc = models.CharField(max_length=50, default=None)
     poc_email = models.CharField(max_length=50, default=None)
     link_doc = models.CharField(max_length=250, null=True)
-    support_type = models.CharField(max_length=50, default=None)
+    support_type = models.CharField(max_length=50, null=True, default=None)
     assignee = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL)
     resource = models.ForeignKey(Resource, null=True, on_delete=models.SET_NULL)
     location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
     department = models.ForeignKey(Department, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, default=None, null=True, on_delete=models.SET_NULL)
+    created_by = models.ForeignKey(User, default=None, related_name="tasks", null=True, on_delete=models.CASCADE)
 
 
 class Asset(models.Model):
@@ -83,13 +84,13 @@ class Asset(models.Model):
     asset_desc = models.CharField(max_length=50, default=None)
     asset_sn = models.CharField(max_length=50, default=None)
     asset_pn = models.CharField(max_length=50, default=None)
-    asset_cal_due = models.CharField(max_length=250, null=True)
-    asset_cal_last = models.CharField(max_length=250, null=True)
+    asset_cal_due = models.CharField(max_length=250, default=None, null=True)
+    asset_cal_last = models.CharField(max_length=250, default=None, null=True)
     task = models.ForeignKey(Task, null=True, on_delete=models.SET_NULL)
-    assignee = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL)
-    resource = models.ForeignKey(Resource, null=True, on_delete=models.SET_NULL)
-    location = models.ForeignKey(Location, null=True, on_delete=models.SET_NULL)
-    department = models.ForeignKey(Department, null=True, on_delete=models.SET_NULL)
+    assignee = models.ForeignKey(Employee, default=None, null=True, on_delete=models.SET_NULL)
+    resource = models.ForeignKey(Resource, default=None, null=True, on_delete=models.SET_NULL)
+    location = models.ForeignKey(Location, default=None, null=True, on_delete=models.SET_NULL)
+    department = models.ForeignKey(Department, default=None, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(User, default=None, null=True, on_delete=models.SET_NULL)
@@ -118,6 +119,6 @@ class FAQ(models.Model):
     class Meta:
         verbose_name_plural = 'FAQs'
     def __str__(self):
-        return self.department
+        return self.question
     
 

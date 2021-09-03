@@ -7,16 +7,22 @@ import { addTask, get } from '../../actions/tasks'
 
 export class Form extends Component {
     state = {
-        job_type: '',
+        test_type: '',
+        test_environment: '',
         work_order: '',
         serial_num: '',
         part_num: '',
-        email: '',
-        environment: '',
-        details: '',
-        status: 'new',
-        assignedTo: 'none',
-        resource: 'none'
+        prod_name: '',
+        prod_desc: '',
+        task_desc: '',
+        poc_email: '',
+        link_doc: '',
+        support_type: '',
+        assignee: '',
+        resource: '',
+        location: '',
+        department: '',
+        status: '',
     }
 
 
@@ -28,25 +34,31 @@ export class Form extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { job_type, work_order, serial_num, part_num, email, environment, details, status, assignedTo, resource } = this.state;
-    const task = { job_type, work_order, serial_num, part_num, email, environment, details, status, assignedTo, resource };
+    const { test_type, test_environment, work_order, serial_num, part_num, prod_name, prod_desc, task_desc, poc_email, link_doc, support_type, assignee, resource, location, department, status } = this.state;
+    const task = { test_type, test_environment, work_order, serial_num, part_num, prod_name, prod_desc, task_desc, poc_email, link_doc, support_type, assignee, resource, location, department, status };
     this.props.addTask(task);
     this.setState({
-        job_type: '', 
-        work_order: '', 
-        serial_num: '', 
-        part_num: '', 
-        email: '',
-        environment: '', 
-        details: '',
-        status: 'new',
-        assignedTo: '',
-        resource: ''
-    });
+      test_type: '',
+      test_environment: '',
+      work_order: '',
+      serial_num: '',
+      part_num: '',
+      prod_name: '',
+      prod_desc: '',
+      task_desc: '',
+      poc_email: '',
+      link_doc: '',
+      support_type: '',
+      assignee: '',
+      resource: '',
+      location: '',
+      department: '',
+      status: '',
+  });
   };
 
   render() {
-    const { job_type, work_order, serial_num, part_num, email, environment, details, status, assignedTo, resource } = this.state;
+    const { test_type, test_environment, work_order, serial_num, part_num, prod_name, prod_desc, task_desc, poc_email, link_doc, support_type, assignee, resource, location, department, status } = this.state;
     return (
       
       <div id="collapseExample" className="collapse  card card-body mt-4 mb-4 form">

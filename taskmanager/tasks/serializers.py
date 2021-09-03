@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from tasks.models import Task, FAQ, Resource, Employee
+from tasks.models import Task, FAQ, Resource, Employee, TestType, TestEnvironment, Location, Department, Status
 
 # Task Serializer
-class TasksSerializer(serializers.ModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
@@ -13,14 +13,47 @@ class FAQSerializer(serializers.ModelSerializer):
         model = FAQ
         fields = '__all__'
 
+# Test_Type Serializer
+class TestTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestType
+        fields = '__all__'
+
+# Test_Environment Serializer
+class TestEnvironmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestEnvironment
+        fields = '__all__'
+
+# Employees Serializer
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+
+
 # Resources Serializer
-class ResourcesSerializer(serializers.ModelSerializer):
+class ResourceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resource
         fields = '__all__'
 
-# Employees Serializer
-class EmployeesSerializer(serializers.ModelSerializer):
+# Location Serializer
+class LocationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Employee
+        model = Location
         fields = '__all__'
+
+# Department Serializer
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields = '__all__'
+
+# Status Serializer
+class StatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Status
+        fields = '__all__'
+
+

@@ -8,16 +8,18 @@ export class DataHub extends Component {
         
         return (
             <Fragment>
-            <div>
-            <div className="input-group mb-3">
-  <div className="input-group-prepend">
-    <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
-  </div>
-  <div className="custom-file">
-    <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-    <label className="custom-file-label" for="inputGroupFile01">Choose file</label>
-  </div>
-</div>
+            <div className="input-group">
+              <input type="text" className="form-control" aria-label="Text input with dropdown button" />
+              <div className="input-group-append">
+                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+                <div className="dropdown-menu">
+                  <a className="dropdown-item" href="#">Action</a>
+                  <a className="dropdown-item" href="#">Another action</a>
+                  <a className="dropdown-item" href="#">Something else here</a>
+                  <div role="separator" className="dropdown-divider"></div>
+                  <a className="dropdown-item" href="#">Separated link</a>
+                </div>
+            </div>
 
 
               <div className="card-group">

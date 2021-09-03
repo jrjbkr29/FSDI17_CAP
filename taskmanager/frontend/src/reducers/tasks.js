@@ -2,9 +2,7 @@ import { GET_TASKS, DELETE_TASK, ADD_TASK, GET_FAQ, GET_EMP, GET_RES} from '../a
 
 const initialState = {
     tasks: [],
-    FAQ: [],
-    resources: [],
-    employees: []
+    
 }
 
 export default function(state = initialState, action) {
@@ -25,26 +23,7 @@ export default function(state = initialState, action) {
                 ...state,
                 tasks: [...state.tasks, action.payload]
             };
-
-        case GET_FAQ:
-            return {
-                ...state,
-                FAQ: action.payload
-            };
-
-        case GET_RES:
-            return {
-                ...state,
-                resources: action.payload
-            };
             
-        case GET_EMP:
-            return {
-                ...state,
-                employees: action.payload
-            };
-
-
         default:
             return state;
     }

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#^(yixugus^pz&azzt7@u*fuu#6jw^!u*@s!g#5s3d+v9*3*yp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'tasks',
     'rest_framework',
     'frontend',
+    'drf_multiple_model',
+    'knox',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +132,9 @@ STATICFILES_DIRS = ( os.path.join('static'), 'frontend')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'knox.auth.TokenAuthentication',
+    )
+}

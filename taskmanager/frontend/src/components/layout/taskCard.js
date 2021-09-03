@@ -20,6 +20,8 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    minWidth: 345,
+    margin: 5,
   },
   media: {
     height: 0,
@@ -49,11 +51,12 @@ export default function TaskCard(props) {
   };
 
   return (
+    <div className={props.status}>
     <Card className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.assignedTo}
+            {props.assignee}
           </Avatar>
         }
         action={
@@ -62,11 +65,11 @@ export default function TaskCard(props) {
           </IconButton>
         }
         title= {props.status}
-        subheader={props.job_type}
+        subheader={props.test_type}
       />
       
       <CardContent className="resource-task-list" id={props.id}>
-        {props.details}
+        {props.task_desc}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -89,10 +92,11 @@ export default function TaskCard(props) {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography>
-            Pending tasks go here
+            {props.prod_desc}
           </Typography>
         </CardContent>
       </Collapse>
     </Card>
+    </div>
   );
 }

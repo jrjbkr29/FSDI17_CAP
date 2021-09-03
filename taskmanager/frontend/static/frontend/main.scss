@@ -11,6 +11,7 @@ $sidebar-color: #adadad;
 $highlight-color: #d8d8d8;
 $icon-bg-color: rgba(255, 255, 255, 0.05);
 $icon-size: 35px;
+$sidebar-bg-image: url('');
 
 @import '~react-pro-sidebar/dist/scss/styles.scss';
 body {
@@ -20,9 +21,24 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
 #form-btn {
   text-align: center;
   width: 100%;
+}
+
+.carousel-control-next-icon {
+ color: red;
 }
 
 .resource-layout {

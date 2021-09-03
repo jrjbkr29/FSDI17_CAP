@@ -2,28 +2,20 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getTasks, deleteTask, getFaq, getRes, getEmp } from '../../actions/tasks';
-import ResourceCard from '../layout/resource';
+
 import TaskCard from '../layout/taskCard';
 
 export class Tasks extends Component {
     static propTypes = {
         tasks: PropTypes.array.isRequired,
-        resources: PropTypes.array.isRequired,
         getTasks: PropTypes.func.isRequired,
-        getFaq: PropTypes.func.isRequired,
-        getRes: PropTypes.func.isRequired,
-        getEmp: PropTypes.func.isRequired,
         deleteTask: PropTypes.func.isRequired
     };
 
     componentDidMount() {
-        this.props.getTasks(),
-        this.props.getFaq(),
-        this.props.getEmp(),
-        this.props.getRes();
+        this.props.getTasks();
     }
     render() {
-        let resources = this.props.resources
         let tasks = this.props.tasks
         return (
             <Fragment>
@@ -58,30 +50,12 @@ export class Tasks extends Component {
                         </tbody>
                 </table>
                  */}
-                <div className="container resource-card-container">
-                    <div className="row">
-                    {resources.map((resource) => <ResourceCard key={resource.id} resource_name={resource.resource_name} status={resource.status} keyId={resource.id}  />)}
-                    </div>
-                </div>
                 <div className="container task-card-container">
                     <div className="row">
-                    {tasks.map((task) => <TaskCard 
-                    key={task.id} 
-                    task_name={task.id} 
-                    job_type={task.job_type} 
-                    work_order={task.work_order}
-                    serial_num={task.serial_num}
-                    part_num={task.part_num}
-                    email={task.email}
-                    environment={task.environment}
-                    details={task.details}
-                    created_at={task.created_at}
-                    status={task.status}
-                    assignedTo={task.assignedTo}
-                    resource={task.resource}
-                     keyId={task.id}  />)}
+                    {this.props.tasks.map((task) => <TaskCard key={task.id} keyId={task.id} work_order={task.work_order} serial_num={task.serial_num} part_num={task.part_num} prod_name={task.prod_name} prod_desc={task.prod_desc} task_desc={task.task_desc} poc_email={task.poc_email} link_doc={task.link_doc} support_type={task.support_type} created_at={task.created_at} test_type={task.test_type} test_environment={task.test_environment} assignee={task.assignee} resource={task.resource} location={task.location} department={task.department} created_by={task.created_by} status={task.status}  />)}
                     </div>
                 </div>
+                
             </Fragment>
         )
     }
@@ -89,7 +63,6 @@ export class Tasks extends Component {
 
 const mapStateToProps = state => ({
     tasks: state.tasks.tasks,
-    resources: state.tasks.resources
 })
 
-export default connect(mapStateToProps, { getTasks, deleteTask, getFaq, getRes, getEmp })(Tasks);
+export default connect(mapStateToProps, { getTasks, deleteTask })(Tasks);

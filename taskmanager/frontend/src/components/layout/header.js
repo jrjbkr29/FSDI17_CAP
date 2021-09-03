@@ -1,32 +1,86 @@
-import React, { Component } from 'react'
-import { Link } from "react-router-dom"; 
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
+
 export class Header extends Component {
-    render() {
-        return (
-            <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Home</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item">
-                            <Link className="nav-link active" to="/tasks">Tasks</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/DataHub">Data-Hub</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="#">Asset-Tracker</Link>
-                        </li>
-                    </ul>
-                    
-                    </div>
-                </div>
-            </nav>
-        )
-    }
+  static propTypes = {
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired,
+  };
+
+  render() {
+    const { isAuthenticated, user } = this.props.auth;
+
+    const authLinks = (
+      <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li className="nav-item">
+          <Link to="/tasks" className="nav-link mr-5">
+            Tasks
+          </Link>
+        </li>
+        <li className="nav-item">
+        <Link to="/#" className="nav-link mr-5">
+            |
+          </Link>
+        </li>
+
+        <span className="navbar-text mr-3">
+          <strong>{user ? `Welcome ${user.username}` : ''}</strong>
+        </span>
+        
+        <li className="nav-item">
+          <button onClick={this.props.logout} className="nav-link btn btn-info btn-sm text-light">
+            Logout
+          </button>
+        </li>
+      </ul>
+    );
+
+    const guestLinks = (
+      <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li className="nav-item">
+          <Link to="/register" className="nav-link">
+            Register
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
+        </li>
+      </ul>
+    );
+
+    return (
+      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+        <div className="container-fluid">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a className="navbar-brand" href="#">
+              Task Manager
+            </a>
+          </div>
+          {isAuthenticated ? authLinks : guestLinks}
+        </div>
+      </nav>
+    );
+  }
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(Header);

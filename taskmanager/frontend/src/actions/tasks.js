@@ -1,25 +1,29 @@
 import axios from 'axios';
 
-import { GET_TASKS, DELETE_TASK, ADD_TASK, GET_FAQ, GET_EMP, GET_RES} from './types';
+import { GET_TASKS, DELETE_TASK, ADD_TASK, GET_FAQ, GET_EMP, GET_RES, GET_ERRORS} from './types';
+import { createMessage, returnErrors } from './messages';
+import { tokenConfig } from './auth';
 
 // GET TASKS
-export const getTasks = () => dispatch => {
+export const getTasks = () => (dispatch, getState) => {
     axios
-    .get('/api/tasks/')
+    .get('/api/tasks/', tokenConfig(getState))
     .then(res => {
+            
             dispatch({
                 type: GET_TASKS,
                 payload: res.data
             });
         })
-        .catch(err => console.log(err))
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status))  )
 };
 
 // Delete TASK
-export const deleteTask = (id) => dispatch => {
+export const deleteTask = (id) => (dispatch, getState) => {
     axios
-    .delete(`/api/tasks/${id}/`)
+    .delete(`/api/tasks/${id}/`, tokenConfig(getState))
     .then(res => {
+            dispatch(createMessage({ deleteTask: "Task Deleted"}));
             dispatch({
                 type: DELETE_TASK,
                 payload: id
@@ -29,16 +33,17 @@ export const deleteTask = (id) => dispatch => {
 };
 
 // ADD TASK
-export const addTask = (task) => dispatch => {
+export const addTask = (task) => (dispatch, getState) => {
     axios
-    .post('/api/tasks/', task)
+    .post('/api/tasks/', task, tokenConfig(getState))
     .then(res => {
-            dispatch({
+        dispatch(createMessage({ addTask: "Task Added"}));    
+        dispatch({
                 type: ADD_TASK,
                 payload: res.data
             });
         })
-        .catch(err => console.log(err))
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)) );
 };
 
 
@@ -56,9 +61,9 @@ export const getFaq = () => dispatch => {
 };
 
 // GET RESOURCES
-export const getRes = () => dispatch => {
+export const getRes = () => (dispatch, getState) => {
     axios
-    .get('/api/Resources/')
+    .get('/api/Resources/', tokenConfig(getState))
     .then(res => {
             dispatch({
                 type: GET_RES,
