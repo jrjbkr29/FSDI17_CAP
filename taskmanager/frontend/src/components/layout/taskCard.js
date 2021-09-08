@@ -69,7 +69,16 @@ export default function TaskCard(props) {
       />
       
       <CardContent className="resource-task-list" id={props.id}>
-        {props.task_desc}
+        <text>
+        
+        Task Description: {props.task_desc}
+        
+        Work Order: {props.work_order}
+        
+        Serial Number: {props.serial_num}
+        
+        Part Number: {props.part_num}
+        </text> 
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">

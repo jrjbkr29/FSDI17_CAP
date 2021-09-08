@@ -76,7 +76,8 @@ class Task(models.Model):
     department = models.ForeignKey(Department, null=True, on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, default=None, related_name="tasks", null=True, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, related_name="tasks", on_delete=models.CASCADE, null=True)
+    created_by = models.ForeignKey(User, default=None, null=True, on_delete=models.CASCADE)
 
 
 class Asset(models.Model):
