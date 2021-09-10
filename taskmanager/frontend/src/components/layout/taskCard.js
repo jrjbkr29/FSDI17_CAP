@@ -55,21 +55,22 @@ export default function TaskCard(props) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {props.assignee}
+          <Avatar aria-label="recipe" className={classes.avatar} src="https://picsum.photos/200">
+            
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
+          <IconButton aria-label="settings" >
             <MoreVertIcon />
-          </IconButton>
+            {props.deleteTask}
+          </IconButton >
         }
         title= {props.status}
         subheader={props.test_type}
       />
       
       <CardContent className="resource-task-list" id={props.id}>
-        <text>
+        <p>
         
         Task Description: {props.task_desc}
         
@@ -78,15 +79,10 @@ export default function TaskCard(props) {
         Serial Number: {props.serial_num}
         
         Part Number: {props.part_num}
-        </text> 
+        </p> 
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,

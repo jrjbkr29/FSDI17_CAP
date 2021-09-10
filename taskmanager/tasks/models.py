@@ -59,8 +59,8 @@ class Resource(models.Model):
         return self.resource_name
 
 class Task(models.Model):
-    test_type = models.ForeignKey(TestType, default=None, null=True, on_delete=models.SET_NULL)
-    test_environment = models.ForeignKey(TestEnvironment, null=True, on_delete=models.SET_NULL)
+    test_type = models.CharField(max_length=10, default=None, null=True)
+    test_environment = models.CharField(max_length=10, null=True)
     work_order = models.CharField(max_length=10, null=True)
     serial_num = models.CharField(max_length=25, null=True)
     part_num = models.CharField(max_length=25, null=True)

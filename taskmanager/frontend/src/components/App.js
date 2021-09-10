@@ -68,11 +68,9 @@ class App extends Component {
                     <ProSidebar >
                     <Alerts />
                         <Menu iconShape="square" style={sidebarcomponentStyle}>
-                            
-                            <SubMenu title="Task Options" icon={<FaHeart />}>
-                            <MenuItem>Component 1</MenuItem>
-                            <MenuItem>Component 2</MenuItem>
-                            </SubMenu>
+                        <a className="navbar-brand" href="#">
+                            Create New Request
+                        </a>
                         </Menu>
                     </ProSidebar>
                     </div>

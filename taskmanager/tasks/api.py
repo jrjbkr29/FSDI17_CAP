@@ -7,15 +7,22 @@ from drf_multiple_model.viewsets import ObjectMultipleModelAPIViewSet
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
     permission_classes = [
-        permissions.IsAuthenticated
+        permissions.AllowAny
     ]
     serializer_class = TaskSerializer
 
-    def get_queryset(self):
-        return self.request.user.tasks.all()
+# class TaskViewSet(viewsets.ModelViewSet):
+#     queryset = Task.objects.all()
+#     permission_classes = [
+#         permissions.IsAuthenticated
+#     ]
+#     serializer_class = TaskSerializer
+
+#     def get_queryset(self):
+#         return self.request.user.tasks.all()
     
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+#     def perform_create(self, serializer):
+#         serializer.save(owner=self.request.user)
 
 
 # FAQ Viewset

@@ -149,61 +149,16 @@ export class Dashboard extends Component {
               <h2>Add Task</h2>
               <form onSubmit={this.onSubmit}>
               <div>
-                <input type="radio" value="atp" name="job_type" /> ATP
-                <input type="radio" value="qtp" name="job_type" /> QTP
-                <input type="radio" value="dev" name="job_type" /> DEV
+                <input type="radio" onChange={this.onChange} value="ATP" name="test_type" /> ATP |
+                <input type="radio" onChange={this.onChange} value= "QTP" name="test_type" /> QTP |
+                <input type="radio" onChange={this.onChange} value="DEV" name="test_type" /> DEV
               </div>
-      {/*
-                <div className="form-group">
-                  <label htmlFor="inputType">Type</label>
-                  <select
-                    name="job_type"
-                    id="inputType"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={test_type}
-                  >
-                      { form_data.map(
-                        (TestType) => 
-                                <option key={TestType.id} value={TestType.test_name}>
-                                    {TestType.test_name}
-                                </option>
-                    ) 
-                    }
-                     
-                    <option defaultValue>Select: ATP/QTP/DEV</option>
-                    <option value="atp">ATP</option>
-                    <option value="qtp">QTP</option>
-                    <option value="dev">DEV</option>
-                    <option value="n/a">N/A</option>
-                    
-                  </select>
-                </div> */}
-                <div className="form-group">
-                  <label htmlFor="inputType">Type</label>
-                  <select
-                    name="environment"
-                    id="environmentInputType"
-                    className="form-control"
-                    onChange={this.onChange}
-                    value={test_environment}
-                  >
-                      {/* */}{/*
-                    { form_data.map(
-                        (TestEnvironment) => 
-                                <option key={TestEnvironment.id} value={TestEnvironment.environment_name}>
-                                    {TestEnvironment.environment_name}
-                                </option>
-                    ) 
-                    }
-                    */}
-                    <option defaultValue>Select: Vibe/Thermal/Shock</option>
-                    <option value="vibe">Vibe</option>
-                    <option value="thermal">Thermal</option>
-                    <option value="shock">Shock</option>
-                    <option value="none">N/A</option>
-                  </select>
-                </div>
+              <div>
+                <input type="radio" onChange={this.onChange} value="Vibe" name="test_environment" /> Vibe |
+                <input type="radio" onChange={this.onChange} value="Shock"  name="test_environment" /> Shock |
+                <input type="radio" onChange={this.onChange} value="Thermal"  name="test_environment" /> Thermal
+              </div>
+      
                 <div className="form-group">
                   <label>Work Order</label>
                   <input

@@ -52,7 +52,9 @@ export class Tasks extends Component {
                  */}
                 <div className="container task-card-container">
                     <div className="row">
-                    {this.props.tasks.map((task) => <TaskCard key={task.id} keyId={task.id} work_order={task.work_order} serial_num={task.serial_num} part_num={task.part_num} prod_name={task.prod_name} prod_desc={task.prod_desc} task_desc={task.task_desc} poc_email={task.poc_email} link_doc={task.link_doc} support_type={task.support_type} created_at={task.created_at} test_type={task.test_type} test_environment={task.test_environment} assignee={task.assignee} resource={task.resource} location={task.location} department={task.department} created_by={task.created_by} status={task.status}  />)}
+                    {this.props.tasks.map((task) => <TaskCard key={task.id} keyId={task.id} work_order={task.work_order} serial_num={task.serial_num} part_num={task.part_num} prod_name={task.prod_name} prod_desc={task.prod_desc} task_desc={task.task_desc} poc_email={task.poc_email} link_doc={task.link_doc} support_type={task.support_type} created_at={task.created_at} test_type={task.test_type} test_environment={task.test_environment} assignee={task.assignee} resource={task.resource} location={task.location} department={task.department} created_by={task.created_by} status={task.status} deleteTask={<button onClick= {this.props.deleteTask.bind(this, task.id)} className="btn btn-danger btn-sm">Delete</button>} />
+                    
+                    )}
                     </div>
                 </div>
                 

@@ -5,18 +5,30 @@ import { createMessage, returnErrors } from './messages';
 import { tokenConfig } from './auth';
 
 // GET TASKS
-export const getTasks = () => (dispatch, getState) => {
+// GET TASKS
+export const getTasks = () => dispatch => {
     axios
-    .get('/api/tasks/', tokenConfig(getState))
+    .get('/api/tasks/')
     .then(res => {
-            
             dispatch({
                 type: GET_TASKS,
                 payload: res.data
             });
         })
-        .catch(err => dispatch(returnErrors(err.response.data, err.response.status))  )
+        .catch(err => console.log(err))
 };
+// export const getTasks = () => (dispatch, getState) => {
+//     axios
+//     .get('/api/tasks/', tokenConfig(getState))
+//     .then(res => {
+            
+//             dispatch({
+//                 type: GET_TASKS,
+//                 payload: res.data
+//             });
+//         })
+//         .catch(err => dispatch(returnErrors(err.response.data, err.response.status))  )
+// };
 
 // Delete TASK
 export const deleteTask = (id) => (dispatch, getState) => {
